@@ -41,7 +41,6 @@ class Hood(models.Model):
 
 
 
-
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

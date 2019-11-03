@@ -1,2 +1,62 @@
 {% extends 'base.html' %}
-<h1> Welcome </h1>
+{% load static%}
+
+{% block content %}
+<style>
+    #home{
+     background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("https://www.visitrwanda.com/wp-content/uploads/fly-images/3521/Rwanda-Lake-Kivu-1-1920x1439.jpg");
+     
+     background-size: cover;
+     min-height: 100%;
+     background-attachment: fixed;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+    }
+    </style>
+<div class="w3-display-container  " id="home"><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        {% if request.user.profile.hood %}
+        <small class="w3-text-white">
+            <button class='btn' style="background-color: #EB4762">
+                <a href="{% url 'hood' hood_id=request.user.profile.hood.id %}"> View Your Current Hood </a>
+            </button>
+        </small>
+
+        {% else %}
+
+    </div>
+</div>
+
+<div class="w3-container">
+    <div class="w3-row">
+        <h2 class="w3-center"></h2>
+        {% for hood in hoods %}
+        <div class="w3-col l4 m6 s12 w3-padding">
+            <div class="w3-card-4 w3-white" style="padding-bottom:5px;padding-top:3px;">
+                <div class="w3-container w3-margin">
+                    <a href="{% url 'hood' hood_id=hood.id %}">
+                        <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
+                        <strong>{{hood.location}}</strong>
+                    </a>
+                </div>
+
+                <header class="hovereffect" style="height:300px">
+                    <img src="https://cdn.cnn.com/cnnnext/dam/assets/190111120830-visit-rwanda-lake-kivu-at-sunset-full-169.jpg" class="img-responsive w3-image w3-center"
+                        style="min-height:100%; max-height:100%">
+                </header>
+
+                <div class="w3-container w3-margin">
+                    <p><a class="info w3-btn w3-round-xxlarge w3-grey" href="{% url 'join' hood_id=hood.id %}">
+                            Join Hood </a></p>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endif %}
+
+{% endblock %}

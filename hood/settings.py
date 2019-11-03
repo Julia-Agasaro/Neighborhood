@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_PROFILE_MODULE = 'accounts.Profile'
 # Application definition
 
 INSTALLED_APPS = [
@@ -118,6 +118,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_REDIRECT_URL = '/accounts/login/'
+
 
 
 # Static files (CSS, JavaScript, Images)

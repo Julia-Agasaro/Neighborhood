@@ -34,6 +34,7 @@ def profile(request, username):
     user = request.user
     profile = User.objects.get(username=username)
     title = f'@{profile.username} '
+
     return render(request, 'profile.html', locals()) 
 
 

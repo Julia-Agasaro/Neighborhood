@@ -16,7 +16,7 @@ def home(request):
 @login_required(login_url='/accounts/login/')
 def hood(request,hood_id):
     current_user = request.user
-    hood_name = current_user.profile.hood
+    hood_name = current_user.hood
     hood = Hood.objects.get(id=request.user.profile.hood.id)
     businesses = Business.get_business(hood_id)
     posts = Post.get_post(hood_id)
@@ -56,27 +56,26 @@ def upload_hood(request):
 @login_required(login_url='/accounts/login/')
 def edit(request):
     current_user = request.user
-    user = Profile.objects.get(user=current_user)
-    profile = User.objects.get(username=request.user)
-
+    # print(f'profile {current_user.profile}')
+    # user = Profile.objects.get(user=current_user)
+   
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=user)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
             return redirect('profile.html')
     else:
-        form = ProfileForm(instance=user)
+        form = ProfileForm()
     return render(request, 'edit_profile.html', locals()) 
-
 @login_required(login_url='/accounts/login')
 def join(request,hood_id):
     hood = Hood.objects.get(id=hood_id)
     current_user = request.user
-    current_user.profile.hood = hood
-    current_user.profile.save()
+    current_user.hood = hood
+    current_user.save()
     return redirect('hood',hood_id)
 
 

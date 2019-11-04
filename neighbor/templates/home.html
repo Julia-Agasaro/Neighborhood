@@ -35,7 +35,7 @@
         <div class="w3-col l4 m6 s12 w3-padding">
             <div class="w3-card-4 w3-white" style="padding-bottom:5px;padding-top:3px;">
                 <div class="w3-container w3-margin">
-                    <a href="{% url 'hood' hood_id=hood.id %}">
+                    <a href="{% url 'hood' hood_id=hood.id %}" style="text-decoration:none">
                         <strong><i class="fas fa-map-marker-alt"></i> {{ hood.name }}, </strong>
                         <strong>{{hood.location}}</strong>
                     </a>
@@ -47,7 +47,7 @@
                 </header>
 
                 <div class="w3-container w3-margin">
-                    <p><a class="info w3-btn w3-round-xxlarge w3-grey" href="{% url 'join' hood_id=hood.id %}">
+                    <p><a class="info w3-btn w3-round-xxlarge w3-grey" href="{% url 'join' hood_id=hood.id %}" style="text-decoration:none" >
                             Join Hood </a></p>
                 </div>
             </div>
